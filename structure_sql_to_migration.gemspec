@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.description = %q{A rake task to generate a migration with up and down using db/structure.sql as input.}
   s.files = Dir['lib/**/*'] + ['Rakefile', 'README.md']
   s.license = 'MIT'
+  s.add_dependency 'rails', ['>= 3.0.0']
 end
