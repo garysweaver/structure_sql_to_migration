@@ -53,6 +53,16 @@ To create: `db/000_create_initial_schema.rb`, run:
 
     rake structure_sql_to_migration
 
+#### Troubleshooting
+
+If your dump assumes multiline split support, then structure.sql will have that, and if it won't execute you may see errors like:
+
+    PG::Error: ERROR:  unterminated dollar-quoted string at or near "$$
+
+If that happens, for this example at least, either move the next line down up after the `$$`, or use `\` before end-of-lines in the offending section(s).
+
+I would have it automatically fix those, but I'm trying to limit postgres-specific functionality, and I would have just assumed that the structure.sql would run (for the most part) when called in execute within a migration, except for the schema_migrations table, schema_migrations inserts, and related unique_schema_migrations index- we don't include those in the migration.
+
 ### License
 
 Copyright (c) 2012 Gary S. Weaver, released under the [MIT license][lic].
